@@ -1,8 +1,26 @@
 body {
-  padding: 50px;
+ margin:0px;
+ padding:0px;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+ 
 }
 
 a {
   color: #00B7FF;
+}
+
+.sale-products {
+  background-color: cornflowerblue;
+
+}
+
+.buy-products {
+  background-color: pink ;
+}
+.content {
+  margin-left: 5%;
+  margin-right: 5%;
+  padding: 25%;
+  border: 1px solid black;
+
 }
