@@ -9,10 +9,12 @@ const swaggerDocument = YAML.load('./swagger.yaml');
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
-var productsRouter = require('./routes/products');
+var productsRouter = require('./routes/api/products');
 var productRouter = require('./routes/product');
 
 var app = express();
+
+require('./lib/connectMongoose');
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
