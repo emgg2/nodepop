@@ -10,7 +10,6 @@ const swaggerDocument = YAML.load('./swagger.yaml');
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 var productsRouter = require('./routes/api/products');
-var productRouter = require('./routes/product');
 
 var app = express();
 
@@ -43,7 +42,6 @@ app.use('/api/products', productsRouter);
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
-app.use('/product', productRouter)
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
@@ -60,11 +58,13 @@ app.use(function(err, req, res, next) {
     err.status = 422;
   }
   
+
   res.status(err.status || 500);
-  if(isApiRequest(req))
+   console.log ("pasa");
+   
+;  if(isApiRequest(req))
   {
-    res.json ({error: err.message});
-    return;
+    return res.json ({error: err.message});
   }
 
   // set locals, only providing error in development
@@ -77,7 +77,8 @@ app.use(function(err, req, res, next) {
 });
 
 function isApiRequest(req){
-  return req.originalURl.indexOf('/api/') === 0 ;
+  
+  return req.originalUrl.indexOf('/api/') === 0 ;
 }
 
 

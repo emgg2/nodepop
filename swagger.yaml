@@ -9,26 +9,11 @@ servers:
   - url: http://localhost:3000
     description: Optional server description, e.g. Internal staging server for testing
 paths:
-  /users:
-    get:
-      summary: Returns a list of users.
-      tags:
-        - users
-      description: Optional extended description in CommonMark or HTML.
-      responses:
-        '200':    # status code
-          description: A JSON array of user names
-          content:
-            application/json:
-              schema: 
-                type: array
-                items: 
-                  type: string
-  /products/list:
+  /api/products:
     get:
       summary: Returns a list of products.
       tags:
-        - products
+        - Products
       description: Returns a list of products, can be filtered by name, tag or price
       parameters:
       - name: page   
@@ -77,11 +62,11 @@ paths:
         '400':    
           description: `page`  + `num_productos_per_page` are required
   
-  /products/tags:
+  /api/products/tags:
     get:
       summary: Returns a list of products tags.
       tags:
-        - products
+        - Products
       description: Returns a list of products tags  
       responses:
         '200':    # status code
@@ -92,11 +77,11 @@ paths:
                 type: array
                 items: 
                   type: string
-  /product/new:
+  /api/products/new:
     post:
       summary: Create a new product.
       tags:
-        - product
+        - Products
       description: Returns a list of products tags  
       responses:
         '200':    # status code

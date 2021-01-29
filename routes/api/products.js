@@ -5,16 +5,35 @@ var router = express.Router();
 const asyncHandler = require('express-async-handler')
 
 /* GET products list */
-router.get('/list', asyncHandler(async(req, res, next) => {
+router.get('/', asyncHandler(async(req, res, next) => {
   
-  // const page = req.query.page;
-  // const num_articles_page = req.query.num_article_page;
-  // const price_max = req.query.price_max;
-  // const price_min = req.query.price_min;
-  // const article_name = req.query.article_name;
-  // const article_tag = req.query.article_tag;
+  const limit = req.query.limit; 
+  const skip = req.query.skip;
+  // const min_price = req.query.min_price;
+  // const max_price = req.query.max_price;
+  const name = req.query.name;
+  const tags = req.query.tag;
 
-  const result = await Product.find();
+  let filter = "";
+   
+
+  if(!limit) {
+    const limit = 10;
+  }
+
+  if(!skip) {
+    const skip = 0;
+  }
+
+  if (name) {
+    filter.name = name;
+  }
+
+  if(tags) {
+    filter.tags = tags;
+  }
+
+  const result = await Product.find(filter,limit,skip,fields,sort);
   res.json(result);
 }));
 
