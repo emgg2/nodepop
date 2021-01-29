@@ -19,9 +19,17 @@ router.get('/list', asyncHandler(async(req, res, next) => {
 }));
 
 /* GET tags list */
-router.get('/tags', (req, res, next) => {
-  res.send('Lista de tags');
-});
+router.get('/tags', asyncHandler(async(req, res, next) => {
+  let tags = [];
+  const result = await Product.find();
+  
+  result.forEach(element => {
+    tags.push(element.tags);
+  
+  });
+  
+  res.send(tags);
+}));
 
 
 
