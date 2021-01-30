@@ -24,6 +24,12 @@ La aplicación arranca en la siguiente URL:
 
 ``` http://localhost:3000 ```
 
+## Base Datos 
+
+Una vez arrancado MongoDB hay que lanzar el script
+
+``` load("/home/eva/keepcoding/practicas/IntroNode/nodepop/lib/bbdd/install_db.js") ```
+
 ## API 
 
 Puede encontrar documentación completa con todos los métodos e incluso probar cada uno de ellos en la siguiente dirección. Está disponible el esquema de base de datos utilizado y los parámetros necesarios y disponibles en cada uno de ellos
