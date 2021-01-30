@@ -10,6 +10,7 @@ const swaggerDocument = YAML.load('./swagger.yaml');
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 var productsRouter = require('./routes/api/products');
+var tagsRouter = require('./routes/api/tags');
 
 var app = express();
 
@@ -34,6 +35,8 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 app.use('/api/products', productsRouter);
+app.use('/api/tags', tagsRouter);
+
 
 
 /**

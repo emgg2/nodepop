@@ -37,20 +37,6 @@ router.get('/', asyncHandler(async(req, res, next) => {
   res.json(result);
 }));
 
-/* GET tags list */
-router.get('/tags', asyncHandler(async(req, res, next) => {
-  let tags = [];
-  const result = await Product.find();
-  
-  result.forEach(element => {
-    tags.push(element.tags);
-  
-  });
-  
-  res.send(tags);
-}));
-
-
 
 
 module.exports = router;
