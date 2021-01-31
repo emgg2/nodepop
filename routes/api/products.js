@@ -1,40 +1,52 @@
 const { RSA_PKCS1_OAEP_PADDING } = require('constants');
 var express = require('express');
-const Product = require('../../models/Product');
 var router = express.Router();
+
+const Product = require('../../models/Product');
 const asyncHandler = require('express-async-handler');
 const { restart } = require('nodemon');
 
 /* GET products list */
 router.get('/', asyncHandler(async(req, res, next) => {
-  
-  const limit = req.query.limit; 
-  const skip = req.query.skip;
-  // const min_price = req.query.min_price;
-  // const max_price = req.query.max_price;
+ 
+  let limit = parseInt(req.query.limit); 
+  let skip = parseInt(req.query.skip);
+  const min_price = req.query.min_price;
+  const max_price = req.query.max_price;
   const name = req.query.name;
   const tags = req.query.tag;
-
-  let filter = "";
+  let filter = {};
    
 
-  if(!limit) {
-    const limit = 10;
-  }
-
-  if(!skip) {
-    const skip = 0;
-  }
-
+ if(!limit) {
+    limit = 10;
+ }
+   
+ if(!skip) {
+    skip = 0;
+ }
+  
   if (name) {
     filter.name = name;
   }
-
   if(tags) {
     filter.tags = tags;
   }
 
-  const result = await Product.find(filter,limit,skip,fields,sort);
+  if(max_price && min_price){
+    filter.price = {$gt: min_price, $lt: max_price }
+  }
+
+  if(max_price && !min_price){
+    filter.price = {$lt: max_price}
+  }
+
+  if(!max_price && min_price){
+    filter.price = {$gt: min_price}
+  }
+
+  const result = await Product.getlist(filter,limit,skip);
+  
   res.json(result);
 }));
 

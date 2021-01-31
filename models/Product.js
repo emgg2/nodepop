@@ -13,12 +13,12 @@ const productSchema = mongoose.Schema({
     collection: 'products'
 })
 
-productSchema.statics.getlist = function (filtro,limit,skip,fields,sort){
-    const query = Product.find(filtro);
+productSchema.statics.getlist = function (filter,limit,skip){
+    const query = Product.find(filter);
     query.limit(limit);
     query.skip(skip);
-    query.select(fields);
-    query.sort(sort);
+    // query.select(fields);
+    // query.sort(sort);
     return query.exec();
 }
 const Product = mongoose.model('Product', productSchema);
