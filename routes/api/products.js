@@ -2,7 +2,8 @@ const { RSA_PKCS1_OAEP_PADDING } = require('constants');
 var express = require('express');
 const Product = require('../../models/Product');
 var router = express.Router();
-const asyncHandler = require('express-async-handler')
+const asyncHandler = require('express-async-handler');
+const { restart } = require('nodemon');
 
 /* GET products list */
 router.get('/', asyncHandler(async(req, res, next) => {
@@ -37,6 +38,14 @@ router.get('/', asyncHandler(async(req, res, next) => {
   res.json(result);
 }));
 
+
+router.post('/new', asyncHandler(async(req,res,next)=> {
+  const productData = req.body;
+  const product = new Product (productData);
+  const productCreated = await product.save();
+  res.status(201).json({result: productCreated});
+
+}));
 
 
 module.exports = router;
