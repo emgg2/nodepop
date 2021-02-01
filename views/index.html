@@ -5,6 +5,10 @@
    
     <div class="sale-products" >
       <h1>Products </h1>
+      <% products.forEach(product => { %>
+        <p>product: <%= product.name%> price: <%= product.price %></p>
+      <%}) %>
+     
       <div class="content">
         
       </div>
