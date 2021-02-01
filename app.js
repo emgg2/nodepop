@@ -6,6 +6,7 @@ var logger = require('morgan');
 const swaggerUi = require('swagger-ui-express');
 const YAML = require('yamljs');
 const swaggerDocument = YAML.load('./swagger.yaml');
+const constant = require('./util/constant');
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
@@ -14,7 +15,10 @@ var tagsRouter = require('./routes/api/tags');
 
 var app = express();
 
+
 require('./lib/connectMongoose');
+
+global.constant = constant;
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));

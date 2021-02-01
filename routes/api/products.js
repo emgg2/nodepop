@@ -8,6 +8,10 @@ const { restart } = require('nodemon');
 
 /* GET products list */
 router.get('/', asyncHandler(async(req, res, next) => {
+
+  console.log("EVA-------------------");
+  console.log(req.query);
+  console.log("-------------------");
  
   let limit = parseInt(req.query.limit); 
   let skip = parseInt(req.query.skip);
