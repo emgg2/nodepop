@@ -7,17 +7,22 @@ const { response } = require('express');
 /* GET home page. */
 router.get('/', function(req, res, next) {
   const filter = req.query;  
-  const response = getProduct(filter).catch(err => console.log(err));
-  res.locals.products = response;
-  res.render('index');
+  const url_path = "/api/products";
+  const products = getData(filter,url_path,res).catch(err => console.log(err));   
+  
+
+
 });
 
-async function getProduct(filter){
-  const url = constant.API_PATH+"/api/products/";
-  return response = await axios.get(url,{
+async function getData(filter, url_path, res){
+  const url = constant.API_PATH+url_path;
+  const response = await axios.get(url,{
     params: filter
-  });   
+  }); 
+ 
+  const products =  response.data;
+  res.render('index', { products });
+  
 }
-
 
 module.exports = router;
