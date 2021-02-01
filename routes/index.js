@@ -8,21 +8,18 @@ const { response } = require('express');
 router.get('/', function(req, res, next) {
   const filter = req.query;  
   const url_path = "/api/products";
-  const products = getData(filter,url_path,res).catch(err => console.log(err));   
-  
-
-
+  const view = "index";
+  getData(res,filter,url_path,view).catch(err => console.log(err));    
 });
 
-async function getData(filter, url_path, res){
+async function getData(res,filter, url_path, view){
   const url = constant.API_PATH+url_path;
   const response = await axios.get(url,{
     params: filter
   }); 
- 
+   
   const products =  response.data;
-  res.render('index', { products });
-  
+  res.render(view, { products });  
 }
 
 module.exports = router;
