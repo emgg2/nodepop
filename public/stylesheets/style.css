@@ -13,6 +13,7 @@ a {
   display: flex;
   margin-left: 5%;
   margin-right: 5%;
+  margin-top: 5%;
 }
 
 .article {
@@ -21,4 +22,17 @@ a {
   padding: 10px;
   border-radius:5px
 
+}
+
+.tag{
+  font-size: small;
+  color: gray;
+}
+
+.sale{
+  color: green;
+}
+
+.lookingFor{
+  color:red;
 }

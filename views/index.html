@@ -1,32 +1,24 @@
 <%- include("head.html") %>  
   <body>
-    
     <%- include("header.html") %>
-   
-    <h1>Products </h1>
-    
-      <div class="content">
-       
-     
-  
+         <div class="content">
           <% if (products){ %>
           <% products.forEach(product => { %>
             <div class="article">
               <img src="<%= product.picture %>" alt="<%= product.nombre%>" width="100" height="120">
+              <p class="tag"><%= product.tags.join(" "); %></p>
               <p><%= product.name %></p>
-              <p><b><%= product.price %></b></p>
+              <p><b><%= product.price %>€</b></p>
+              <% if(product.sale) { %>
+                <p class="sale"> En venta</p>
+              <% } else {%>
+                <p class="lookingFor">Se busca</p>
+              <%}%>                            
             </div>
-            
           <%}) %>
           <%} %>
-         
-      
     </div>
-    
-       
     </div>
-    
-
   </body>
   <%- include("footer.html") %>
 
