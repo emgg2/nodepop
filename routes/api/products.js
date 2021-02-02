@@ -8,10 +8,6 @@ const { restart } = require('nodemon');
 
 /* GET products list */
 router.get('/', asyncHandler(async(req, res, next) => {
-
-  console.log("EVA-------------------");
-  console.log(req.query);
-  console.log("-------------------");
  
   let limit = parseInt(req.query.limit); 
   let skip = parseInt(req.query.skip);
@@ -33,6 +29,10 @@ router.get('/', asyncHandler(async(req, res, next) => {
   if (name) {
     filter.name = name;
   }
+  console.log("eva-----------")
+  console.log(filter);
+  console.log("------------")
+
   if(tags) {
     filter.tags = tags;
   }
