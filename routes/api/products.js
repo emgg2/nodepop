@@ -14,7 +14,7 @@ router.get('/', asyncHandler(async(req, res, next) => {
   const min_price = req.query.min_price;
   const max_price = req.query.max_price;
   const name = req.query.name;
-  const tags = req.query.tag;
+  const tags = req.query.tags;
   let filter = {};
    
 
@@ -29,13 +29,14 @@ router.get('/', asyncHandler(async(req, res, next) => {
   if (name) {
     filter.name = name;
   }
-  console.log("eva-----------")
-  console.log(filter);
-  console.log("------------")
+
 
   if(tags) {
-    filter.tags = tags;
+
+    filter.tags = {"$in": tags.split(" ")};
   }
+
+
 
   if(max_price && min_price){
     filter.price = {$gt: min_price, $lt: max_price }
@@ -48,6 +49,10 @@ router.get('/', asyncHandler(async(req, res, next) => {
   if(!max_price && min_price){
     filter.price = {$gt: min_price}
   }
+
+  console.log("eva-----------")
+  console.log(filter);
+  console.log("------------")
 
   const result = await Product.getlist(filter,limit,skip);
   
