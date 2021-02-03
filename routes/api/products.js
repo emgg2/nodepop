@@ -15,6 +15,8 @@ router.get('/', asyncHandler(async(req, res, next) => {
   const max_price = req.query.max_price;
   const name = req.query.name;
   const tags = req.query.tags;
+  const sort = req.query.sort;
+
   let filter = {};
    
 
@@ -27,15 +29,13 @@ router.get('/', asyncHandler(async(req, res, next) => {
  }
   
   if (name) {
-    filter.name = name;
+    filter.name = new RegExp("^"+name);
   }
-
 
   if(tags) {
 
     filter.tags = {"$in": tags.split(" ")};
   }
-
 
 
   if(max_price && min_price){
@@ -54,7 +54,7 @@ router.get('/', asyncHandler(async(req, res, next) => {
   console.log(filter);
   console.log("------------")
 
-  const result = await Product.getlist(filter,limit,skip);
+  const result = await Product.getlist(filter,limit,skip,sort);
   
   res.json(result);
 }));
