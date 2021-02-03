@@ -78,11 +78,11 @@ paths:
         '400':    
           description: `page`  + `num_productos_per_page` are required
   
-  /api/products/tags:
+  /api/tags:
     get:
-      summary: Returns a list of products tags.
+      summary: Returns a list of tags.
       tags:
-        - Products
+        - Tags
       description: Returns a list of products tags  
       responses:
         '200':    # status code
@@ -137,7 +137,6 @@ paths:
                 type: array
                 items: 
                   type: string
-  
 
 components:
   schemas:
@@ -159,7 +158,13 @@ components:
         - status
         - price
         - picture
-
+    Tags:
+      properties:
+        name:
+          type: string        
+      required:  
+        - name
+        
 
 
           
