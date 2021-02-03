@@ -15,10 +15,12 @@ router.get('/', asyncHandler(async(req, res, next) => {
   const max_price = req.query.max_price;
   const name = req.query.name;
   const tags = req.query.tags;
+  const type = req.query.type;
   const sort = req.query.sort;
 
   let filter = {};
    
+  
 
  if(!limit) {
     limit = 10;
@@ -28,6 +30,10 @@ router.get('/', asyncHandler(async(req, res, next) => {
     skip = 0;
  }
   
+  if(type) {
+    filter.sale = (type === 'venta') ? true : false;
+  }
+
   if (name) {
     filter.name = new RegExp("^"+name);
   }
