@@ -56,10 +56,6 @@ router.get('/', asyncHandler(async(req, res, next) => {
     filter.price = {$gt: min_price}
   }
 
-  console.log("eva-----------")
-  console.log(filter);
-  console.log("------------")
-
   const result = await Product.getlist(filter,limit,skip,sort);
   
   res.json(result);
@@ -68,6 +64,9 @@ router.get('/', asyncHandler(async(req, res, next) => {
 
 router.post('/new', asyncHandler(async(req,res,next)=> {
   const productData = req.body;
+  console.log("EVA-------------------")
+  console.log(req);
+  console.log("-------------------------");
   const product = new Product (productData);
   const productCreated = await product.save();
   res.status(201).json({result: productCreated});
