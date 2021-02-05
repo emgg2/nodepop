@@ -9,7 +9,6 @@ const swaggerDocument = YAML.load('./swagger.yaml');
 const constant = require('./util/constant');
 
 var indexRouter = require('./routes/index');
-var usersRouter = require('./routes/users');
 var productsRouter = require('./routes/api/products');
 var tagsRouter = require('./routes/api/tags');
 
@@ -48,7 +47,6 @@ app.use('/api/tags', tagsRouter);
  */
 
 app.use('/', indexRouter);
-app.use('/users', usersRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

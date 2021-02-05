@@ -9,6 +9,7 @@ servers:
   - url: http://localhost:3000
     description: Optional server description, e.g. Internal staging server for testing
 paths:
+#PRODUCTS router
   /api/products:
     get:
       summary: Returns a list of products.
@@ -76,23 +77,7 @@ paths:
                 items: 
                   type: string
         '400':    
-          description: `page`  + `num_productos_per_page` are required
-  
-  /api/tags:
-    get:
-      summary: Returns a list of tags.
-      tags:
-        - Tags
-      description: Returns a list of products tags  
-      responses:
-        '200':    # status code
-          description: A JSON array of user names
-          content:
-            application/json:
-              schema: 
-                type: array
-                items: 
-                  type: string
+          description: `page`  + `num_productos_per_page` are required   
   /api/products/new:
     post:
       summary: Create a new product.
@@ -133,6 +118,50 @@ paths:
       responses:
         '201':    # status code
           description: Product Created
+
+  /api/products/{id}/update:
+    put:
+      summary: Update the product given .
+      tags:
+        - Products
+      parameters:
+        - in: path
+          name: id
+          require: true
+          schema: 
+            type: integer
+            minimun: 1
+          description: The product ID
+  
+  /api/products/{id}/delete:
+    delete:
+      summary: Delete the product given .
+      tags:
+        - Products
+      parameters:
+        - in: path
+          name: id
+          require: true
+          schema: 
+            type: integer
+            minimun: 1
+          description: The product ID
+#TAGS routes
+  /api/tags:
+    get:
+      summary: Returns a list of tags.
+      tags:
+        - Tags
+      description: Returns a list of products tags  
+      responses:
+        '200':    # status code
+          description: A JSON array of user names
+          content:
+            application/json:
+              schema: 
+                type: array
+                items: 
+                  type: string
 
 schemas:
   Products:
