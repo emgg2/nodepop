@@ -18,8 +18,7 @@ router.get('/', asyncHandler(async(req, res, next) => {
   const type = req.query.type;
   const sort = req.query.sort;
 
-  let filter = {};
-   
+  let filter = {};  
   
 
  if(!limit) {
@@ -64,13 +63,28 @@ router.get('/', asyncHandler(async(req, res, next) => {
 
 router.post('/new', asyncHandler(async(req,res,next)=> {
   const productData = req.body;
-  console.log("EVA-------------------")
-  console.log(req);
-  console.log("-------------------------");
   const product = new Product (productData);
   const productCreated = await product.save();
   res.status(201).json({result: productCreated});
 
+}));
+
+router.put('/:id/update', asyncHandler(async(req,res,next)=> {
+  const _id = req.params.id;
+  const productData = req.body;
+
+  const productUpdated = await Product.findOneAndUpdate({_id}, productData,
+    {
+      new:true,
+      useFindAndModify: false
+    });
+  res.json({result: productUpdated});
+}));
+
+router.delete('/:id/delete', asyncHandler(async(req,res, next)=> {
+  const _id = req.params.id;
+  await Product.deleteOne({_id});
+  res.json();
 }));
 
 
