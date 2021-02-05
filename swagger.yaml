@@ -131,8 +131,66 @@ paths:
                 picture: "./img/rain-boots.jpeg"
                 tags: ["lifestyle"]            
       responses:
-        '201':    # status code
+        '200':    # status code
           description: Product Created
+
+  /api/products/{id}/update:
+    put:
+      summary: Update the product given.
+      tags:
+        - Products
+      parameters:
+        - in: path
+          name: id
+          required: true         
+          description: The product ID
+      requestBody:
+        description: Product
+        required: true
+        content: 
+          application/x-www-form-urlencoded:
+            schema:
+              summary: An example of Product
+              type: object
+              required:
+                - name
+                - price
+                - sale
+                - picture
+              properties:
+                name:
+                  type: string
+                price:
+                  type: number
+                sale:
+                  type: boolean
+                picture:
+                  type: string
+                tags:
+                  type: string      
+              example:
+                name: "Nueva Bici"
+                price: 48
+                sale: false
+                picture: "./img/Bicicleta.jpeg"
+                tags: ["lifestyle"]    
+      responses:
+        '200':    # status code
+          description: Product Updated  
+
+  /api/products/{id}/delete:
+    delete:
+      summary: Delete the product given.
+      tags:
+        - Products
+      parameters:
+        - in: path
+          name: id
+          required: true         
+          description: The product ID
+      responses:
+        '201':    # status code
+          description: Product Deleted
 
 schemas:
   Products:
