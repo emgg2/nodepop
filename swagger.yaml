@@ -9,7 +9,6 @@ servers:
   - url: http://localhost:3000
     description: Optional server description, e.g. Internal staging server for testing
 paths:
-#PRODUCTS router
   /api/products:
     get:
       summary: Returns a list of products.
@@ -78,6 +77,7 @@ paths:
                   type: string
         '400':    
           description: `page`  + `num_productos_per_page` are required
+
   /api/products/new:
     post:
       summary: Create a new product.
@@ -89,7 +89,7 @@ paths:
         description: Product
         required: true
         content: 
-          application/x-www-form-urlencoded:
+          application/json:
             schema:
               summary: An example of Product
               type: object
@@ -108,17 +108,20 @@ paths:
                 picture:
                   type: string
                 tags:
-                  type: string      
+                  type: array    
+                  items:
+                    type:string
+                  uniqueItems: true
               example:
                 name: "Rain Boots"
                 price: 35
                 sale: false
-                picture: "./img/rain-boots.jpeg"
-                tags: ["lifestyle"]            
+                picture: "./images/rain-boots.jpeg"
+                tags: ["lifestyle","fashion"]            
       responses:
         '201':    # status code
           description: Product Created
-          
+
   /api/products/{id}/update:
     put:
       summary: Update the product given.
@@ -133,7 +136,7 @@ paths:
         description: Product
         required: true
         content:
-          application/x-www-form-urlencoded:
+          application/json:
             schema:
               summary: An example of Product
               type: object
@@ -152,13 +155,16 @@ paths:
                 picture:
                   type: string
                 tags:
-                  type: string
+                  type: array
+                  items:
+                    type: string
+                  uniqueItems: true
               example:
                 name: "Nueva Bici"
                 price: 48
                 sale: false
-                picture: "./img/Bicicleta.jpeg"
-                tags: ["lifestyle"]
+                picture: "./images/Bicicleta.jpeg"
+                tags: ["lifestyle", "motor"]
       responses:
         '200':    # status code
           description: Product Updated
@@ -177,7 +183,6 @@ paths:
         '201':    # status code
           description: Product Deleted
 
-  #TAGS routes
   /api/tags:
     get:
       summary: Returns a list of tags.
