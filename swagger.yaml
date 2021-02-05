@@ -133,18 +133,13 @@ paths:
           required: true
           description: The product ID
       requestBody:
-        description: Product
-        required: true
+        description: Product to be updated, can be all the fields, two or one. Whatever it is wanted. Example {"name":"nueva Bici"} {"name:"nuevaBici", price:32}
+        required: true        
         content:
           application/json:
             schema:
               summary: An example of Product
-              type: object
-              required:
-                - name
-                - price
-                - sale
-                - picture
+              type: object              
               properties:
                 name:
                   type: string
