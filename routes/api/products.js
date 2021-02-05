@@ -63,10 +63,6 @@ router.get('/', asyncHandler(async(req, res, next) => {
 
 router.post('/new', asyncHandler(async(req,res,next)=> {
   const productData = req.body;
-  console.log("EVA--------------");
-
-  console.log(productData);
-  console.log("------------------");
   const product = new Product (productData);
   const productCreated = await product.save();
   res.status(201).json({result: productCreated});
