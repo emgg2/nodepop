@@ -2,7 +2,7 @@
   <body>
     <%- include("header.html") %>
          <div class="content">
-          <% if (products){ %>
+          <% if (products.length > 0) { %>
           <% products.forEach(product => { %>
             <div class="article">
               <img src="<%= product.picture %>" alt="<%= product.nombre%>">
@@ -15,8 +15,10 @@
                 <p class="lookingFor">Se busca</p>
               <%}%>                            
             </div>
-          <%}) %>
-          <%} %>
+            <% }) %>
+          <% } else { %>
+            <p><b> No se han encontrado productos coincidentes</b><p>
+          <% } %>
     </div>
     </div>
   </body>

@@ -78,13 +78,13 @@ router.put('/:id/update', asyncHandler(async(req,res,next)=> {
       new:true,
       useFindAndModify: false
     });
-  res.json({result: productUpdated});
+  res.status(200).json({result: productUpdated});
 }));
 
 router.delete('/:id/delete', asyncHandler(async(req,res, next)=> {
   const _id = req.params.id;
   await Product.deleteOne({_id});
-  res.json();
+  res.status(200).json({ result: "Product deleted"});
 }));
 
 

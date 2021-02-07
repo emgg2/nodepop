@@ -24,6 +24,12 @@ La aplicación arranca en la siguiente URL:
 
 ``` http://localhost:3000 ```
 
+Para aplicar cualquier filtro
+
+``` http://localhost:3000/?min_price=10&max_price=100&name=B&sort=name&limit=20&skip=4 ```
+
+Un datos a tener en cuenta es que si no se indica un limit por defecto es 10 y muestra la primera página (skip)
+
 ## Base Datos 
 
 Una vez arrancado MongoDB hay que lanzar el script

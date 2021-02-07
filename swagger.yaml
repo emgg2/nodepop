@@ -175,7 +175,7 @@ paths:
           required: true
           description: The product ID
       responses:
-        '201':    # status code
+        '200':    # status code
           description: Product Deleted
 
   /api/tags:
