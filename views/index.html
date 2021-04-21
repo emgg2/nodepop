@@ -10,14 +10,14 @@
               <p><%= product.name %></p>
               <p><b><%= product.price %>€</b></p>
               <% if(product.sale) { %>
-                <p class="sale"> En venta</p>
+                <p class="sale"><%= __('On sale') %></p>
               <% } else {%>
-                <p class="lookingFor">Se busca</p>
+                <p class="lookingFor"><%= __('Looking for') %></p>
               <%}%>                            
             </div>
             <% }) %>
           <% } else { %>
-            <p><b> No se han encontrado productos coincidentes</b><p>
+            <p><b> <%= __('Product not found') %></b><p>
           <% } %>
     </div>
     </div>

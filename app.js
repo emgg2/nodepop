@@ -7,6 +7,7 @@ const swaggerUi = require('swagger-ui-express');
 const YAML = require('yamljs');
 const swaggerDocument = YAML.load('./swagger.yaml');
 const constant = require('./util/constant');
+const i18n = require('./lib/i18nConfigure');
 
 var indexRouter = require('./routes/index');
 var productsRouter = require('./routes/api/products');
@@ -31,6 +32,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
+app.use(i18n.init);
 
 /**
  * API URL
