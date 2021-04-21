@@ -3,6 +3,25 @@
 	"Looking for": "Se busca",
 	"Nodepop": "Nodepop",
 	"Home": "Home",
-	"About": "About"
-	
+	"About": "About",
+	"Welcome To Our page !": "Bienvenido a nuesta página !",
+	"You can sell or buy anything": "Puedes comprar o vender cualquier cosa",
+	"Look for your product or upload whatever you want to sell": "Busca el productos que deseas comprar. Sube el producto que quieres vender",
+	"Products": "Productos",
+	"Author: {{name}}, {name:Eva Garcia}": "Autor: {{name}}, {name:Eva Garcia}",
+	"Privacy Policy": "Política de privacidad",
+	"Terms of Use": "Términos de uso",
+	"Contact Us": "Contacta con nosotros",
+	"Please enter your name.": "Inserte su nombre.",
+	"Please enter your email address.": "Inserte su email.",
+	"Please enter your phone number.": "Inserte su número de teléfono.",
+	"Please enter a message.": "Inserte su mensaje.",
+	"Send Message": "Enviar mensaje",
+	"We will contact you asap": "Nos pondremos en contacto contigo lo antes posible",
+	"Your Name": "Nombre",
+	"Your Email": "Email",
+	"Your Phone": "Teléfono",
+	"Your Message": "Mensaje",
+	"Contact": "Contacto",
+	"Author: {{name}}": "Autor: {{name}}"
 }

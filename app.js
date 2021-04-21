@@ -12,6 +12,7 @@ const i18n = require('./lib/i18nConfigure');
 var indexRouter = require('./routes/index');
 var productsRouter = require('./routes/api/products');
 var tagsRouter = require('./routes/api/tags');
+var changeLocale = require('./routes/change-locale');
 
 var app = express();
 
@@ -50,6 +51,7 @@ app.use('/api/tags', tagsRouter);
  */
 
 app.use('/', indexRouter);
+app.use('/change-locale',changeLocale);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
