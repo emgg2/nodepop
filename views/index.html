@@ -1,26 +1,64 @@
 <%- include("head.html") %>  
-  <body>
-    <%- include("header.html") %>
-         <div class="content">
-          <% if (products.length > 0) { %>
-          <% products.forEach(product => { %>
-            <div class="article">
-              <img src="<%= product.picture %>" alt="<%= product.nombre%>">
-              <p class="tag"><%= product.tags.join(" "); %></p>
-              <p><%= product.name %></p>
-              <p><b><%= product.price %>€</b></p>
-              <% if(product.sale) { %>
-                <p class="sale"><%= __('On sale') %></p>
-              <% } else {%>
-                <p class="lookingFor"><%= __('Looking for') %></p>
-              <%}%>                            
-            </div>
-            <% }) %>
-          <% } else { %>
-            <p><b> <%= __('Product not found') %></b><p>
-          <% } %>
-    </div>
-    </div>
+<body>
+    <!-- Masthead-->
+    <header class="masthead">
+      <div class="container">
+          <div class="masthead-subheading">Welcome To Our page !</div>
+          <div class="masthead-heading text-uppercase">You can sell or buy anything</div>
+          <a class="btn btn-primary btn-xl text-uppercase js-scroll-trigger" href="#services">Look for your product or upload whatever you want to sell </a>
+      </div>
+  </header>
+  
+    <!-- Portfolio Grid-->
+    <section class="page-section bg-light" id="portfolio">
+      <div class="container">
+          <div class="text-center">
+              <h2 class="section-heading text-uppercase">Products</h2>
+              <h3 class="section-subheading text-muted"></h3>
+          </div>
+          <div class="row">
+
+            <% if (products.length > 0) { %>
+              <% products.forEach(product => { %>
+                <div class="col-lg-3 col-sm-5 mb-3">
+                  <div class="portfolio-item">
+                      <a class="portfolio-link" data-toggle="modal" href="#portfolioModal1">
+                          <div class="portfolio-hover">
+                              <div class="portfolio-hover-content"><i class="fas fa-plus fa-3x"></i></div>
+                          </div>
+                          <img  class="img-fluid" src="<%= product.picture %>" alt="<%= product.nombre%>">                          
+                      </a>
+                      <div class="portfolio-caption">
+                          <div class="portfolio-caption-heading"><%= product.name %> <p><b><%= product.price %>€</b></p></div>
+                          <div class="portfolio-caption-subheading text-muted">
+                            <% if(product.sale) { %>
+                              <p class="sale"><%= __('On sale') %></p>
+                            <% } else {%>
+                              <p class="lookingFor"><%= __('Looking for') %></p>
+                            <%}%>   
+                            <p class="tag"><%= product.tags.join(" "); %></p>                   
+                          </div>
+                      </div>
+                  </div>
+              </div>
+
+                <% }) %>
+              <% } else { %>
+                <p><b> <%= __('Product not found') %></b><p>
+              <% } %>
+
+
+            
+    
+          </div>
+      </div>
+  </section>
+  <!-- About-->
+
+
+
+ 
+    </div>    
   </body>
   <%- include("footer.html") %>
 
