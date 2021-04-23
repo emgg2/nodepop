@@ -13,6 +13,7 @@ var indexRouter = require('./routes/index');
 var productsRouter = require('./routes/api/products');
 var tagsRouter = require('./routes/api/tags');
 var changeLocale = require('./routes/change-locale');
+var loginController = require('./controllers/loginController');
 
 var app = express();
 
@@ -46,12 +47,15 @@ app.use('/api/tags', tagsRouter);
 
 
 
+
 /**
  * Application URL
  */
 
-app.use('/', indexRouter);
-app.use('/change-locale',changeLocale);
+app.use('/',              indexRouter);
+app.use('/change-locale', changeLocale);
+app.get('/login',         loginController.index);
+app.post('/login',        loginController.post)
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

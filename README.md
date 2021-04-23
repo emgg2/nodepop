@@ -35,6 +35,8 @@ Un datos a tener en cuenta es que si no se indica un limit por defecto es 10 y m
 Una vez arrancado MongoDB hay que lanzar el script
 
 ``` load("/home/eva/keepcoding/practicas/IntroNode/nodepop/lib/bbdd/install_db.js") ```
+Inicializar Usuarios 
+``` node init
 
 ## API 
 

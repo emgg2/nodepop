@@ -23,5 +23,6 @@
 	"Your Phone": "Teléfono",
 	"Your Message": "Mensaje",
 	"Contact": "Contacto",
-	"Author: {{name}}": "Autor: {{name}}"
+	"Author: {{name}}": "Autor: {{name}}",
+	"Login": "Login"
 }

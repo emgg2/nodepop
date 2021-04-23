@@ -12,7 +12,7 @@ userSchema.statics.hashPassword = function (unHashedPassword) {
     return bcrypt.hash(unHashedPassword,8);
 }
 
-userSchema.method.comparePassword = function(unHasedPassword) {
+userSchema.methods.comparePassword = function(unHasedPassword) {
     return bcrypt.compare(unHasedPassword, this.password);
 }
 
