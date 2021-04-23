@@ -1,36 +1,36 @@
 <%- include("head.html") %>  
 <section class="page-section" id="contact">
-<div class="container formulario">
+<div class="container login-full-screen">
 
     <form method="POST">
       <div class="form-group">
-        <label for="exampleInputEmail1">Email address</label>
+        <label class="form-label" for="exampleInputEmail1"><%= __('Email address') %></label>
         <input type="email"
                name="email"
                value="<%= email %>"
                class="form-control" 
                id="exampleInputEmail1" 
-               placeholder="Your Email *"
+               placeholder="<%= __('Your Email') %> *"
                required="required"
                aria-describedby="emailHelp"
                data-validation-required-message="Please enter your email."
                >
         <p class="help-block text-danger"></p>
 
-        <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+        <small id="emailHelp" class="form-text text-muted"><%= __('We`ll never share your email with anyone else.') %></small>
       </div>
       <div class="form-group">
-        <label for="exampleInputPassword1">Password</label>
+        <label class="form-label" for="exampleInputPassword1"><%= __('Password') %></label>
         <input type="password" 
                name="password"
                class="form-control" 
-               placeholder="Your Password *"
+               placeholder="<%= __('Your Password') %> *"
                required="required"
                id="exampleInputPassword1"
-               data-validation-required-message="Please enter your password.">
+               data-validation-required-message="<%= __('Please enter your password.') %>">
                <p class="help-block text-danger"></p>
       </div>
-      <button type="submit" class="btn btn-primary">Submit</button>
+      <button type="submit" class="btn btn-primary"><%= __('Submit') %></button>
       <div><%= error %></div>
     </form>
   

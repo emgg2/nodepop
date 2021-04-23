@@ -21,18 +21,20 @@ class LoginController {
      async post(req,res,next) {
          try {
             const {email,password} = req.body;
-            console.log("eva", email, password);
-
             const user = await User.findOne({email});
     
-            if(!user || await user.comparePassword(password)) {
+            if(!user || !(await user.comparePassword(password))) {
                 res.locals.email = email;
                 res.locals.error = 'Invalid credentials';
                 res.render('login');
                 return;
             }
 
-            res.redirect('/login');
+            //set _id in user session 
+            req.session.loggedUser = {
+                _id: user._id
+            }
+            res.redirect('/private');
              
          } catch (error) {
              next(error);
