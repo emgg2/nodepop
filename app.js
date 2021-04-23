@@ -17,7 +17,7 @@ var changeLocale = require('./routes/change-locale');
 var app = express();
 
 
-require('./lib/connectMongoose');
+require('./models/connectMongoose');
 
 global.constant = constant;
 

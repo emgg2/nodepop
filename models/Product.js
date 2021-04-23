@@ -4,10 +4,10 @@ const mongoose = require ('mongoose');
 
 const productSchema = mongoose.Schema({
     "name": {type:String, index:true},
-    "sale": Boolean,
+    "sale": {type:Boolean, index:true},
     "price": {type:Number, index:true},
     "picture": String,
-    "tags": [String]
+    "tags": {type:[String], index:true}
 },
 {
     collection: 'products'
