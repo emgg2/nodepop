@@ -30,5 +30,7 @@
 	"Password": "Password",
 	"Your Password": "Password",
 	"Please enter your password.": "Introduzca su password",
-	"Submit": "Entrar"
+	"Submit": "Entrar",
+	"Private": "Private",
+	"Logout": "Logout"
 }

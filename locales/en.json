@@ -26,10 +26,11 @@
 	"Author: {{name}}": "Author: {{name}}",
 	"Login": "Login",
 	"Email address": "Email address",
-	"We will never share your email with anyone else.": "We will never share your email with anyone else.",
 	"We`ll never share your email with anyone else.": "We`ll never share your email with anyone else.",
 	"Password": "Password",
 	"Your Password": "Your Password",
 	"Please enter your password.": "Please enter your password.",
-	"Submit": "Submit"
+	"Submit": "Submit",
+	"Private": "Private",
+	"Logout": "Logout"
 }
