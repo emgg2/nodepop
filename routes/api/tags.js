@@ -6,7 +6,7 @@ const asyncHandler = require('express-async-handler');
 const jwtAuth = require ('../../lib/jwtAuth');
 
 /* GET tags list */
-router.get('/', jwtAuth, asyncHandler(async(req, res, next) => {
+router.get('/', asyncHandler(async(req, res, next) => {
   
   
   const result = await Tag.find();

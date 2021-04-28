@@ -8,7 +8,7 @@ const asyncHandler = require('express-async-handler');
 const { restart } = require('nodemon');
 
 /* GET products list */
-router.get('/', jwtAuth,asyncHandler(async(req, res, next) => {
+router.get('/', asyncHandler(async(req, res, next) => {
  
   let limit = parseInt(req.query.limit); 
   let skip = parseInt(req.query.skip);

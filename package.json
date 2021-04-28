@@ -6,6 +6,7 @@
     "start": "node ./bin/www",
     "cluster": "node ./bin/cluster",
     "dev": "cross-env PORT=3000 NODE_ENV=dev DEBUG=nodeapi:* nodemon",
+    "prod": "cross-env PORT=3000 NODE_ENV=prod DEBUG=nodeapi:* nodemon",
     "ngrok": "ngrok http 3000",
     "test": "jest",
     "init-db": "node ./lib/bbdd/init-db.js"
@@ -26,6 +27,7 @@
     "jsonwebtoken": "^8.5.1",
     "mongoose": "^5.11.13",
     "morgan": "~1.9.1",
+    "nodemailer": "^6.6.0",
     "swagger-ui-express": "^4.1.6",
     "yamljs": "^0.3.0"
   },

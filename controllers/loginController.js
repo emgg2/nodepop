@@ -2,6 +2,7 @@
 
 const { User } = require ('../models');
 const jwt = require ('jsonwebtoken');
+const nodemailer = require('nodemailer');
 
 class LoginController {
 
@@ -35,6 +36,13 @@ class LoginController {
             req.session.loggedUser = {
                 _id: user._id
             }
+
+            //send email
+            const info = await user.sendEmailToUser('This is the subject', 'Welcome to nodepop');
+            console.log('Message sent: %s ', info.messageId);
+            console.log('Preview URL: %s', nodemailer.getTestMessageUrl(info));
+
+
             res.redirect('/private');
              
          } catch (error) {
