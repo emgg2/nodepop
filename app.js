@@ -12,6 +12,7 @@ const session = require('express-session');
 const sessionAuth = require('./lib/sessionAuthMiddleware');
 
 var indexRouter = require('./routes/index');
+var productsController = require('./controllers/productsController');
 var productsRouter = require('./routes/api/products');
 var tagsRouter = require('./routes/api/tags');
 var changeLocale = require('./routes/change-locale');
@@ -47,7 +48,12 @@ app.use(i18n.init);
  */
 app.post('/api/loginJWT',   loginController.postJWT)
 app.use('/api-docs',        swaggerUi.serve, swaggerUi.setup(swaggerDocument));
-app.use('/api/products',    productsRouter);
+app.get('/api/products',    productsController.get);
+app.post('/api/products',   productsController.post);
+app.put('/api/product/:id', productsController.put);
+app.delete('/api/product/:id',  productsController.delete);
+//app.use('/api/products',    productsRouter);
+//app.use('/api/products/new',   productsRouter);
 app.use('/api/tags',        tagsRouter);
 
 

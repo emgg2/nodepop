@@ -1,7 +1,7 @@
 const { RSA_PKCS1_OAEP_PADDING } = require('constants');
 var express = require('express');
 var router = express.Router();
-const jwtAuth = require ('../../lib/jwtAuth');
+//const jwtAuth = require ('../../lib/jwtAuth');
 
 const Product = require('../../models/Product');
 const asyncHandler = require('express-async-handler');
@@ -62,7 +62,7 @@ router.get('/', asyncHandler(async(req, res, next) => {
 }));
 
 
-router.post('/new', jwtAuth, asyncHandler(async(req,res,next)=> {
+router.post('/',  asyncHandler(async(req,res,next)=> {
   const productData = req.body;
   const product = new Product (productData);
   const productCreated = await product.save();
@@ -70,7 +70,7 @@ router.post('/new', jwtAuth, asyncHandler(async(req,res,next)=> {
 
 }));
 
-router.put('/:id/update', jwtAuth, asyncHandler(async(req,res,next)=> {
+router.put('/:id/update', asyncHandler(async(req,res,next)=> {
   const _id = req.params.id;
   const productData = req.body;
 
@@ -82,7 +82,7 @@ router.put('/:id/update', jwtAuth, asyncHandler(async(req,res,next)=> {
   res.status(200).json({result: productUpdated});
 }));
 
-router.delete('/:id/delete', jwtAuth, asyncHandler(async(req,res, next)=> {
+router.delete('/:id/delete', asyncHandler(async(req,res, next)=> {
   const _id = req.params.id;
   await Product.deleteOne({_id});
   res.status(200).json({ result: "Product deleted"});
