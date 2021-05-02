@@ -57,7 +57,7 @@ class LoginController {
      */
 
   async postJWT(req,res,next) {
-    try {
+    try {        
        const {email,password} = req.body;
        const user = await User.findOne({email});
 
@@ -94,7 +94,6 @@ class LoginController {
     
     logout(req, res, next) {
         debugger;
-        console.log("pasa");
         req.session.regenerate(err => {
             if(err) {
                 next(err);

@@ -3,9 +3,17 @@
 const { Product } = require ('../models');
 const jwt = require ('jsonwebtoken');
 const asyncHandler = require('express-async-handler');
+const cote = require('cote');
+const requester = new cote.Requester({name: 'thumbnail service'})
+const fs = require('fs');
+const path = require("path");
+
+
 
 class ProductsController {
 
+
+    
     /**
      * GET /products
      * 
@@ -46,8 +54,7 @@ class ProductsController {
             if(tags) {
           
               filter.tags = {"$in": tags.split(" ")};
-            }
-          
+            }          
           
             if(max_price && min_price){
               filter.price = {$gt: min_price, $lt: max_price }
@@ -78,11 +85,36 @@ class ProductsController {
      * @param {*} rest 
      * @param {*} next 
      */
-    async post (req, res, next)  {
+    async post (req,res,next)  {
+       
         const productData = req.body;
         const product = new Product (productData);
+        console.log(productData);
+           
         const productCreated = await product.save();
-        res.status(201).json({result: productCreated});
+        const file = req.file;
+        console.log("Eva", file);
+        if(!file) {
+            const error = new Error('Please upload a file')
+            error.httpStatusCode = 400
+             return next(error)
+        } 
+        
+        //const {picture} = productCreated;
+
+        requester.send({
+            type: 'get thumbnail',            
+            path: file.path 
+            
+
+        }, result => {
+            
+        })
+        res.status(201).json({
+           result: productCreated
+     
+            
+        });
     }
 
  /**

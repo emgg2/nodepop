@@ -1,7 +1,11 @@
 const { RSA_PKCS1_OAEP_PADDING } = require('constants');
 var express = require('express');
 var router = express.Router();
-//const jwtAuth = require ('../../lib/jwtAuth');
+const jwtAuth = require ('../../lib/jwtAuth');
+const multer = require('multer');
+const upload = multer({dest: 'uploads/'});
+const cote = require('cote');
+const requester = new cote.Requester({name: 'thumbnail service'})
 
 const Product = require('../../models/Product');
 const asyncHandler = require('express-async-handler');
@@ -62,15 +66,27 @@ router.get('/', asyncHandler(async(req, res, next) => {
 }));
 
 
-router.post('/',  asyncHandler(async(req,res,next)=> {
+router.post('/new', upload.single('picture') , asyncHandler(async(req,res,next)=> {
   const productData = req.body;
   const product = new Product (productData);
   const productCreated = await product.save();
+  const {picture} = productData;
+  console.log("pasa");
+  requester.send({
+    type: 'get thumbnail',
+
+    picture: picture.split("/")[2],
+    url: path.join(__dirname,THUMBNAIL_PATH)
+    
+
+}, result => {
+    
+})
   res.status(201).json({result: productCreated});
 
 }));
 
-router.put('/:id/update', asyncHandler(async(req,res,next)=> {
+router.put('/:id/update', jwtAuth, asyncHandler(async(req,res,next)=> {
   const _id = req.params.id;
   const productData = req.body;
 
@@ -82,7 +98,7 @@ router.put('/:id/update', asyncHandler(async(req,res,next)=> {
   res.status(200).json({result: productUpdated});
 }));
 
-router.delete('/:id/delete', asyncHandler(async(req,res, next)=> {
+router.delete('/:id/delete', jwtAuth, asyncHandler(async(req,res, next)=> {
   const _id = req.params.id;
   await Product.deleteOne({_id});
   res.status(200).json({ result: "Product deleted"});

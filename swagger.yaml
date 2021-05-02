@@ -78,7 +78,7 @@ paths:
         '400':    
           description: `page`  + `num_productos_per_page` are required
 
-  /api/products:
+  /api/products/new:
     post:
       summary: Create a new product.
       tags:
@@ -122,7 +122,7 @@ paths:
         '201':    # status code
           description: Product Created
 
-  /api/product/{id}:
+  /api/products/{id}/update:
     put:
       summary: Update the product given.
       tags:
@@ -164,7 +164,7 @@ paths:
         '200':    # status code
           description: Product Updated
 
-  /api/product/{id}:
+  /api/products/{id}/delete:
     delete:
       summary: Delete the product given.
       tags:

@@ -9,7 +9,13 @@ const swaggerDocument = YAML.load('./swagger.yaml');
 const constant = require('./util/constant');
 const i18n = require('./lib/i18nConfigure');
 const session = require('express-session');
+const jwtAuth = require('./lib/jwtAuth');
 const sessionAuth = require('./lib/sessionAuthMiddleware');
+const multer = require('multer');
+const bodyParser = require('body-parser');
+
+
+
 
 var indexRouter = require('./routes/index');
 var productsController = require('./controllers/productsController');
@@ -18,10 +24,21 @@ var tagsRouter = require('./routes/api/tags');
 var changeLocale = require('./routes/change-locale');
 var loginController = require('./controllers/loginController');
 var privateController = require('./controllers/privateController');
+var storage = multer.diskStorage({
+  destination: function (req, file, cb) {
+    cb(null, 'uploads')
+  },
+  filename: function(req,file,cb) {
+    cb(null, file.fieldname+'-'+Date.now())
+  }
+});
+
+var upload = multer({storage: storage});
 
 
 var app = express();
 
+app.use(bodyParser.json());
 
 require('./models/connectMongoose');
 
@@ -46,15 +63,16 @@ app.use(i18n.init);
 /**
  * API URL
  */
-app.post('/api/loginJWT',   loginController.postJWT)
-app.use('/api-docs',        swaggerUi.serve, swaggerUi.setup(swaggerDocument));
-app.get('/api/products',    productsController.get);
-app.post('/api/products',   productsController.post);
-app.put('/api/product/:id', productsController.put);
-app.delete('/api/product/:id',  productsController.delete);
-//app.use('/api/products',    productsRouter);
-//app.use('/api/products/new',   productsRouter);
-app.use('/api/tags',        tagsRouter);
+app.post('/api/loginJWT',       loginController.postJWT)
+app.use('/api-docs',            swaggerUi.serve, swaggerUi.setup(swaggerDocument));
+app.get('/api/products',        productsController.get);
+ app.post('/api/products/new', upload.single('picture'),  productsController.post);
+ app.put('/api/product/:id',     jwtAuth, productsController.put);
+ app.delete('/api/product/:id',  jwtAuth,  productsController.delete);
+// app.use('/api/products',    productsRouter);
+// app.use('/api/products/new',   productsRouter);
+app.use('/api/tags',            tagsRouter);
+app.use('/monedas', require('./routes/monedas'));
 
 
 
@@ -68,8 +86,7 @@ app.use(session({
   saveUninitialized: true, // Fuerza que una sesion que no está inicializada sea guardada
   resave: false, // cada petición que se recibe va a buscar la sesión correspondiente y desde memoria la va a poner en req.session = obj. Cuando termine la petició resave impide que se guarde la información siempre, solo cuando cambia
   cookie: {
-    secure: process.env.NODE_ENV !== 'dev',
-    //secure: true, // browser no mandará al servidor la cookie si no tiene https
+    secure: process.env.NODE_ENV !== 'dev',    
     maxAge: 1000 * 60 * 60 * 24 * 2  
   }
 
