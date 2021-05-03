@@ -88,10 +88,7 @@ class ProductsController {
     async post (req,res,next)  {
        
         const productData = req.body;
-        const product = new Product (productData);
-        console.log(productData);
-           
-        const productCreated = await product.save();
+        
         const file = req.file;
         console.log("Eva", file);
         if(!file) {
@@ -104,12 +101,16 @@ class ProductsController {
 
         requester.send({
             type: 'get thumbnail',            
-            path: file.path 
-            
-
+            path: file.path        
         }, result => {
             
         })
+        const product = new Product (productData);     
+        console.log(product);
+        product.picture = file.path;
+         
+        const productCreated = await product.save();
+
         res.status(201).json({
            result: productCreated
      

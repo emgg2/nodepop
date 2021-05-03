@@ -19,7 +19,6 @@ const bodyParser = require('body-parser');
 
 var indexRouter = require('./routes/index');
 var productsController = require('./controllers/productsController');
-var productsRouter = require('./routes/api/products');
 var tagsRouter = require('./routes/api/tags');
 var changeLocale = require('./routes/change-locale');
 var loginController = require('./controllers/loginController');
@@ -66,13 +65,11 @@ app.use(i18n.init);
 app.post('/api/loginJWT',       loginController.postJWT)
 app.use('/api-docs',            swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 app.get('/api/products',        productsController.get);
- app.post('/api/products/new', upload.single('picture'),  productsController.post);
- app.put('/api/product/:id',     jwtAuth, productsController.put);
- app.delete('/api/product/:id',  jwtAuth,  productsController.delete);
-// app.use('/api/products',    productsRouter);
-// app.use('/api/products/new',   productsRouter);
+app.post('/api/products/new',   jwtAuth, upload.single('picture'),  productsController.post);
+app.put('/api/product/:id',     jwtAuth, productsController.put);
+app.delete('/api/product/:id',  jwtAuth,  productsController.delete);
 app.use('/api/tags',            tagsRouter);
-app.use('/monedas', require('./routes/monedas'));
+
 
 
 
