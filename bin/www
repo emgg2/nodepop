@@ -88,3 +88,23 @@ function onListening() {
     : 'port ' + addr.port;
   debug('Listening on ' + bind);
 }
+
+//websockets
+const io = require('socket.io')(server);
+
+// in front of a client connection
+
+
+io.on('connection', socket => {
+  // socket is a permant connection with a browser
+  console.log('nueva conexión de un cliente!!', socket.id);
+
+  // get events (new-message) from connect browsers
+  socket.on('new-message', data => {        
+    io.emit('message-from-server', data);
+  })
+
+  setInterval(()=>{
+    socket.emit('one second has passed')
+  },1000);
+})

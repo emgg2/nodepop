@@ -23,6 +23,7 @@ var tagsRouter = require('./routes/api/tags');
 var changeLocale = require('./routes/change-locale');
 var loginController = require('./controllers/loginController');
 var privateController = require('./controllers/privateController');
+var chatController = require('./controllers/chatController');
 var storage = multer.diskStorage({
   destination: function (req, file, cb) {
     cb(null, 'uploads')
@@ -109,6 +110,7 @@ app.get('/login',         loginController.index);
 app.post('/login',        loginController.post);
 app.get('/logout',       loginController.logout);
 app.get('/private',       sessionAuth,privateController.index);
+app.get('/chat',         chatController.index);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

@@ -41,6 +41,8 @@
                         <!-- <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#about">About</a></li>
                         <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#team">Team</a></li> -->
                         <li class="nav-item"><a class="nav-link js-scroll-trigger" href="/#contact"><%= __('Contact') %></a></li>
+                        <li class="nav-item"><a class="nav-link js-scroll-trigger" href="/chat" target="_blank" rel="noopener noreferrer" onclick="window.open(this.href,this.target,'width=500,height=350,top=220,left=200,toolbar=no,location=no,status=no,menubar=no');return false;">
+                        <%= __('Chat') %></a></li>
 
                         <% if (!session.loggedUser) { %>
                             <li class="nav-item"><a class="nav-link js-scroll-trigger" href="/login"><%= __('Login') %></a></li>
