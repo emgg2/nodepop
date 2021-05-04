@@ -65,6 +65,15 @@ Puede encontrar documentación completa con todos los métodos e incluso probar 
 
 ``` http://localhost:3000/api-docs/ ```
 
+## IMAGDOM
+
+He creado el módulo imagdom y lo he subido a npm , 
+
+https://www.npmjs.com/package/imagdom
+
+Lo he usado en la pagina de privado, solo hace un console.log
+
+
 
 
 

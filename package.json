@@ -27,6 +27,7 @@
     "fs": "0.0.1-security",
     "http-errors": "~1.6.3",
     "i18n": "^0.13.2",
+    "imagdom": "^1.0.1",
     "jade": "~1.11.0",
     "jimp": "^0.16.1",
     "jsonwebtoken": "^8.5.1",

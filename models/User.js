@@ -19,12 +19,9 @@ userSchema.methods.comparePassword = function(unHasedPassword) {
 
 userSchema.methods.sendEmailToUser = async function(subject, content) {
     //create a transport
-    
     const transport = await emailTransportConfigure();
  
     // send the email
-
-   
 
     return transport.sendMail({
         from : process.env.EMAIL_SERVICE_FROM,
@@ -32,9 +29,6 @@ userSchema.methods.sendEmailToUser = async function(subject, content) {
         subject,
         html: content
     })
-
-   
-
 
 }
 

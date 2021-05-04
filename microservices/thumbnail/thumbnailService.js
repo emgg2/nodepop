@@ -5,9 +5,7 @@ const cote = require('cote');
 const jimp = require('jimp');
 const path = require('path');
 
-
 const responder = new cote.Responder({name: 'Thumbnail Service'});
-
 
 responder.on('get thumbnail', async (req,done) => {
     const {path} = req;

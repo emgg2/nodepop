@@ -25,23 +25,27 @@ class LoginController {
             const {email,password} = req.body;
             const user = await User.findOne({email});
     
-            if(!user || !(await user.comparePassword(password))) {
+            if(!user || !(await user.comparePassword(password))) {                
                 res.locals.email = email;
                 res.locals.error = 'Invalid credentials';
                 res.render('login');
                 return;
             }
 
+             
             //set _id in user session 
             req.session.loggedUser = {
                 _id: user._id
             }
 
-            //send email
-            const info = await user.sendEmailToUser('This is the subject', 'Welcome to nodepop');
-            console.log('Message sent: %s ', info.messageId);
-            console.log('Preview URL: %s', nodemailer.getTestMessageUrl(info));
+            console.log("antes enviar email");
+  
+             //send email
+             const info = await user.sendEmailToUser ('This is the subject', 'Welcome to nodepop');
+             console.log('Message sent: %s ', info.messageId);
+             console.log('Preview URL: %s', nodemailer.getTestMessageUrl(info));
 
+             console.log("despues de enviar email");
 
             res.redirect('/private');
              

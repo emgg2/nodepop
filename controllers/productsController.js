@@ -88,33 +88,25 @@ class ProductsController {
     async post (req,res,next)  {
        
         const productData = req.body;
-        
         const file = req.file;
-        console.log("Eva", file);
         if(!file) {
             const error = new Error('Please upload a file')
             error.httpStatusCode = 400
              return next(error)
         } 
         
-        //const {picture} = productCreated;
-
         requester.send({
             type: 'get thumbnail',            
             path: file.path        
         }, result => {
             
         })
-        const product = new Product (productData);     
-        console.log(product);
-        product.picture = file.path;
-         
+        const product = new Product (productData);             
+        product.picture = file.path;         
         const productCreated = await product.save();
 
         res.status(201).json({
-           result: productCreated
-     
-            
+           result: productCreated   
         });
     }
 
