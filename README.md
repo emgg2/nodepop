@@ -59,19 +59,30 @@ npm run init-db
 
 
 
+
 ## API 
 
 Puede encontrar documentación completa con todos los métodos e incluso probar cada uno de ellos en la siguiente dirección. Está disponible el esquema de base de datos utilizado y los parámetros necesarios y disponibles en cada uno de ellos
 
 ``` http://localhost:3000/api-docs/ ```
 
+```
+- /api/authenticate -> para obtener el JWT token
+- /api/products/new -> Crear un producto. Posibles errores:
+    - Missing token (si no se envia un token)
+    - invalid signature (si el token es incorrecto)
+    
+``` 
+
 ## IMAGDOM
 
 He creado el módulo imagdom y lo he subido a npm , 
 
 https://www.npmjs.com/package/imagdom
+ 
+Se usa en la pagina de privado
 
-Lo he usado en la pagina de privado, solo hace un console.log
+
 
 
 

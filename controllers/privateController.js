@@ -3,19 +3,21 @@ const imagdom = require('imagdom');
 
 class PrivateController {
     async index(req, res, next) {
-        
-        console.log()
- const confImage = {
-      findBy: 'yellow+flowers',
+    
+    const confImage = {
+      findBy: 'picture',
       lang: 'es',
       image_type: 'photo',
       orientation: 'vertical',
-      category: 'nature'
+      category: 'people'
     };
-    const image = await imagdom.getImage(confImage);
-    console.log("imagen", image);
 
-        res.render('private');
+    let images = [];
+    images.push(await imagdom.getImage(confImage));
+    images.push(await imagdom.getImage(confImage));
+    images.push(await imagdom.getImage(confImage));
+
+    res.render('private', {images});
     }
 }
 

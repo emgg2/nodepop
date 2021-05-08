@@ -97,7 +97,7 @@ const io = require('socket.io')(server);
 
 io.on('connection', socket => {
   // socket is a permant connection with a browser
-  console.log('nueva conexión de un cliente!!', socket.id);
+  console.log('new connection!!', socket.id);
 
   // get events (new-message) from connect browsers
   socket.on('new-message', data => {        

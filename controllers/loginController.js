@@ -37,15 +37,11 @@ class LoginController {
             req.session.loggedUser = {
                 _id: user._id
             }
-
-            console.log("antes enviar email");
   
              //send email
              const info = await user.sendEmailToUser ('This is the subject', 'Welcome to nodepop');
              console.log('Message sent: %s ', info.messageId);
              console.log('Preview URL: %s', nodemailer.getTestMessageUrl(info));
-
-             console.log("despues de enviar email");
 
             res.redirect('/private');
              

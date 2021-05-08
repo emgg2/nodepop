@@ -63,7 +63,7 @@ app.use(i18n.init);
 /**
  * API URL
  */
-app.post('/api/loginJWT',       loginController.postJWT)
+app.post('/api/authenticate',   loginController.postJWT)
 app.use('/api-docs',            swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 app.get('/api/products',        productsController.get);
 app.post('/api/products/new',   jwtAuth, upload.single('picture'),  productsController.post);
