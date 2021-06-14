@@ -93,9 +93,10 @@ La parte de react está desplegada en https://nodepop.emgg.net/
 
 La parte de node está https://nodepopapi.emgg.net/
 Los archivos estáticos de la aplicación se sirven en 
+```
     https://nodepopapi.emgg.net/css/
     https://nodepopapi.emgg.net/img/
-
+```
 La cabecera es X-Owner: emgg2222
 
 
