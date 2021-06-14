@@ -84,6 +84,21 @@ Se usa en la pagina de privado
 
 
 
+# ENTREGA PRACTICA SERVIDORES Y DESPLIEGUE
+
+## Nodepop
+    La parte de react está desplegada en https://nodepop.emgg.net/
+
+## Api nodepop 
+  La parte de node está https://nodepopapi.emgg.net/
+  Los archivos estáticos de la aplicación se sirven en 
+      https://nodepopapi.emgg.net/css/
+      https://nodepopapi.emgg.net/img/
+
+  La cabecera es X-Owner: emgg2222
+
+
+
 
 
 
